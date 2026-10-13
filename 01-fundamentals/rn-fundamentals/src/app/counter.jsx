@@ -41,3 +41,10 @@ export default function Counter({ count, incr, decr }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+  },
+});
