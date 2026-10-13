@@ -36,14 +36,12 @@ export default function ButtonPractice() {
       >
         Buttons Example:
       </Text>
-      <View style={styles.view}>
-        <Button title="Button" onPress={onButton} />
-      </View>
-      <View style={styles.view}>
-        <Pressable onPress={onPressable}>
-          <Text style={styles.textpressable}>Pressable</Text>
-        </Pressable>
-      </View>
+
+      <Button title="Button" onPress={onButton} />
+
+      <Pressable onPress={onPressable}>
+        <Text style={styles.textpressable}>Pressable</Text>
+      </Pressable>
     </View>
   );
 }
