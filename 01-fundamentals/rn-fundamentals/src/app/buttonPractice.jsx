@@ -20,8 +20,22 @@ export default function ButtonPractice() {
   };
 
   return (
-    <SafeAreaView style={styles.safeareaview}>
-      <Text style={styles.textsafeareaview}>Buttons Example</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 35,
+          color: "white",
+          textAlign: "center",
+          marginTop: 50,
+        }}
+      >
+        Buttons Example:
+      </Text>
       <View style={styles.view}>
         <Button title="Button" onPress={onButton} />
       </View>
@@ -30,15 +44,11 @@ export default function ButtonPractice() {
           <Text style={styles.textpressable}>Pressable</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeareaview: {
-    flex: "auto",
-    justifyContent: "center",
-  },
   view: {
     flex: 1,
     justifyContent: "center",
@@ -46,12 +56,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     color: "white",
     marginTop: 50,
-  },
-  textsafeareaview: {
-    color: "white",
-    fontSize: 30,
-    textAlign: "center",
-    gap: 50,
   },
   textpressable: {
     color: "white",
