@@ -1,66 +1,40 @@
-import {
-  Button,
-  Pressable,
-  TouchableOpacity,
-  View,
-  Text,
-  StyleSheet,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import { View, Text, TextInput } from "react-native";
 
-export default function ButtonPractice() {
-  const onButton = () => {
-    alert("Button Clicked");
-  };
-  const onPressable = () => {
-    alert("Pressable Clicked");
-  };
-  const onTouchable = () => {
-    alert("Touchable Clicked");
-  };
+export default function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <View
       style={{
+        padding: 20,
+        gap: 12,
+        backgroundColor: "white",
         flex: 1,
         justifyContent: "center",
       }}
     >
-      <Text
-        style={{
-          fontSize: 35,
-          color: "white",
-          textAlign: "center",
-          marginTop: 50,
-        }}
-      >
-        Buttons Example:
-      </Text>
+      <TextInput
+        placeholder="Enter your name"
+        value={name}
+        onChangeText={setName}
+        autoCapitalize="words"
+        style={{ borderWidth: 1, padding: 10 }}
+      />
 
-      <Button title="Button" onPress={onButton} />
+      <TextInput
+        placeholder="Enter your email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
+        style={{ borderWidth: 1, padding: 10 }}
+      />
 
-      <Pressable onPress={onPressable}>
-        <Text style={styles.textpressable}>Pressable</Text>
-      </Pressable>
+      <Text>Name: {name}</Text>
+      <Text>Email: {email}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-    color: "white",
-    marginTop: 50,
-  },
-  textpressable: {
-    color: "white",
-    fontSize: 20,
-    backgroundColor: "green",
-    textAlign: "center",
-    marginTop: 20,
-    width: 300,
-  },
-});
