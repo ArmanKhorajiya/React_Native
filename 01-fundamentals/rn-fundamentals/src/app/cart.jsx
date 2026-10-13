@@ -1,60 +1,68 @@
-import { useContext } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-} from "react-native";
 
-import { CartContext } from "./cart-context";
+import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 
-const products = [
-  { id: 1, name: "Laptop" },
-  { id: 2, name: "Smartphone" },
-  { id: 3, name: "Headphones" },
-  { id: 4, name: "Keyboard" },
-  { id: 5, name: "Mouse" },
-  { id: 6, name: "Monitor" },
-  { id: 7, name: "Smartwatch" },
-  { id: 8, name: "Tablet" },
-  { id: 9, name: "Speaker" },
-  { id: 10, name: "Charger" },
-];
-
-export default function CartScreen() {
-  const { quantities } = useContext(CartContext);
-
-  const cartProducts = products.filter(
-    (product) => quantities[product.id] > 0
+export default function Cart({ products, quantities, onBack }) {
+  const cartItems = products.filter(
+    (item) => quantities[item.id] > 0
   );
 
-  const totalItems = Object.values(quantities).reduce(
-    (total, quantity) => total + quantity,
+  const totalItems = cartItems.reduce(
+    (total, item) => total + quantities[item.id],
+    0
+  );
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * quantities[item.id],
     0
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>My Cart</Text>
-      <Text style={styles.subtitle}>Total items: {totalItems}</Text>
+      <Text style={styles.heading}>Your Cart</Text>
+      <Text style={styles.subtitle}>
+        {totalItems} item(s) selected
+      </Text>
 
-      {cartProducts.length === 0 ? (
-        <Text style={styles.empty}>Your cart is empty.</Text>
+      {cartItems.length === 0 ? (
+        <View style={styles.emptyCart}>
+          <Text style={styles.emptyTitle}>Your cart is empty</Text>
+          <Text style={styles.emptySubtitle}>
+            Add some products to get started.
+          </Text>
+        </View>
       ) : (
         <FlatList
-          data={cartProducts}
+          data={cartItems}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={styles.list}
           renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.quantity}>
-                Qty: {quantities[item.id]}
+            <View style={styles.cartCard}>
+              <View style={styles.itemInfo}>
+                <Text style={styles.productName}>{item.name}</Text>
+                <Text style={styles.detail}>
+                  ₹{item.price.toLocaleString("en-IN")} ×{" "}
+                  {quantities[item.id]}
+                </Text>
+              </View>
+
+              <Text style={styles.itemTotal}>
+                ₹{(item.price * quantities[item.id]).toLocaleString("en-IN")}
               </Text>
             </View>
           )}
         />
       )}
+
+      <View style={styles.summary}>
+        <Text style={styles.totalLabel}>Total</Text>
+        <Text style={styles.totalPrice}>
+          ₹{totalPrice.toLocaleString("en-IN")}
+        </Text>
+      </View>
+
+      <View style={styles.backButton}>
+        <Button title="Back to Products" onPress={onBack} color="#2563EB" />
+      </View>
     </View>
   );
 }
@@ -63,48 +71,87 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#101827",
-    padding: 16,
-    paddingTop: 50,
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
   heading: {
-    color: "white",
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
+    color: "#FFFFFF",
   },
   subtitle: {
-    color: "#AAB8CC",
-    fontSize: 15,
-    marginTop: 5,
+    fontSize: 14,
+    color: "#9CAEC8",
+    marginTop: 4,
     marginBottom: 20,
   },
   list: {
-    paddingBottom: 20,
+    paddingBottom: 12,
   },
-  card: {
+  cartCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: "#1D2D44",
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: "#344761",
-    borderRadius: 12,
-    padding: 18,
+    padding: 16,
     marginBottom: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  },
+  itemInfo: {
+    flex: 1,
+    marginRight: 12,
   },
   productName: {
-    color: "white",
-    fontSize: 18,
+    color: "#FFFFFF",
+    fontSize: 17,
     fontWeight: "600",
   },
-  quantity: {
-    color: "#75D99A",
+  detail: {
+    color: "#9CAEC8",
+    fontSize: 14,
+    marginTop: 6,
+  },
+  itemTotal: {
+    color: "#93C5FD",
     fontSize: 16,
     fontWeight: "bold",
   },
-  empty: {
-    color: "#AAB8CC",
-    fontSize: 16,
-    marginTop: 30,
-    textAlign: "center",
+  emptyCart: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  emptyTitle: {
+    color: "#FFFFFF",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  emptySubtitle: {
+    color: "#9CAEC8",
+    marginTop: 8,
+  },
+  summary: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#1D2D44",
+    borderRadius: 14,
+    padding: 18,
+    marginBottom: 14,
+  },
+  totalLabel: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  totalPrice: {
+    color: "#60A5FA",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  backButton: {
+    marginBottom: 20,
   },
 });

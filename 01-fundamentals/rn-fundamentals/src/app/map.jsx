@@ -1,38 +1,50 @@
-import { View, Text } from "react-native";
-const arr = [
-  { id: 1, name: "Arman" },
-  { id: 2, name: "Nazil" },
-];
-export default function MapExample() {
+import { useState } from "react";
+import { View, Text, Button, FlatList } from "react-native";
+
+export default function () {
+  const [a, setA] = useState([]);
+  const api = "https://jsonplaceholder.typicode.com/posts";
+  const data = fetch(api)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      setA(data);
+    })
+    .catch((error) => console.log(error));
+
   return (
     <View
       style={{
-        justifyContent: "center",
         flex: 1,
+        alignContent: "center",
+        alignItems: "center",
+        backgroundColor: "lightgreen",
+        marginTop: 30,
       }}
     >
       <Text
         style={{
           textAlign: "center",
-          fontSize: 30,
-          color: "white",
+          fontSize: 50,
         }}
       >
-        Mapping Array Example:-
+        Fetch API using .then():-
       </Text>
-      <Text></Text>
-      {arr.map((item) => (
-        <Text
-          key={item.id}
-          style={{
-            textAlign: "center",
-            fontSize: 30,
-            color: "green",
-          }}
-        >
-          {item.name}
-        </Text>
-      ))}
+      <FlatList
+        data={a}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <Text
+            style={{
+              color: "purple",
+              fontSize: 20,
+              fontStyle:"italic"
+            }}
+          >
+            {item.id}
+          </Text>
+        )}
+      />
     </View>
   );
 }
