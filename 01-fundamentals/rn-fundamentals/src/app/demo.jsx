@@ -1,5 +1,6 @@
 import {
   ScrollView,
+  View,
   Text,
   Pressable,
   TouchableOpacity,
@@ -14,7 +15,7 @@ export default function Demo() {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.heading}>Practice:</Text>
 
       <Button
@@ -27,7 +28,7 @@ export default function Demo() {
         color={"red"}
       />
 
-      <Pressable onPressIn={onCLick} style={styles.pressableButton}>
+      <Pressable onPressIn={onCLick}>
         <Text style={styles.buttonText}>Pressable Button</Text>
       </Pressable>
 
@@ -82,10 +83,11 @@ export default function Demo() {
         <Text style={styles.holdButton}>Hold Me</Text>
       </Pressable>
 
-      <Image 
-        source={require('./')}
+      <Image
+        source={require("../../assets/images/rain.jpg")}
+        style={{ width: 350, height: 200, resizeMode: "contain" }}
       />
-    </ScrollView>
+    </View>
   );
 }
 

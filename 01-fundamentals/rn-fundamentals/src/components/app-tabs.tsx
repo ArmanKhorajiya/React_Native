@@ -45,6 +45,14 @@ export default function AppTabs() {
           renderingMode="template"
         />
       </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="todoList">
+        <NativeTabs.Trigger.Label>todoList</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          src={require("@/assets/images/tabIcons/explore.png")}
+          renderingMode="template"
+        />
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }
