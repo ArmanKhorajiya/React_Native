@@ -1,10 +1,11 @@
 import {
-  View,
+  ScrollView,
   Text,
   Pressable,
   TouchableOpacity,
   Button,
   StyleSheet,
+  Image,
 } from "react-native";
 
 export default function Demo() {
@@ -13,7 +14,7 @@ export default function Demo() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.heading}>Practice:</Text>
 
       <Button
@@ -35,10 +36,28 @@ export default function Demo() {
       </TouchableOpacity>
 
       <Pressable
-        android_ripple={{ color: "#90CAF9" }}
+        android_ripple={{
+          color: "#90CAF9",
+          // borderless: false,
+          // foreground: true,
+        }}
         onPress={() => alert("Clicked")}
+        style={{
+          backgroundColor: "red",
+          borderRadius: 8,
+          overflow: "hidden",
+        }}
       >
-        <Text style={styles.buttonText}>Android ripple effect</Text>
+        <Text
+          style={{
+            fontSize: 20,
+            color: "white",
+            textAlign: "center",
+            padding: 15,
+          }}
+        >
+          Android ripple effect
+        </Text>
       </Pressable>
 
       <Pressable
@@ -62,7 +81,11 @@ export default function Demo() {
       >
         <Text style={styles.holdButton}>Hold Me</Text>
       </Pressable>
-    </View>
+
+      <Image 
+        source={require('./')}
+      />
+    </ScrollView>
   );
 }
 
