@@ -129,9 +129,12 @@ const DATA = [
 export default function Practice() {
   return (
     <View style={styles.container}>
+      <Text numberOfLines={1}></Text>
       <Image
-        source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPf_062JKWOBQr9rKxfyjLtlwzCn6Wwx_fJ6vQDIAgQ&s=10" }}
-        style={{ width: "auto", height: 200,resizeMode:"contain" }}
+        source={{
+          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPf_062JKWOBQr9rKxfyjLtlwzCn6Wwx_fJ6vQDIAgQ&s=10",
+        }}
+        style={{ width: "auto", height: 200, resizeMode: "contain" }}
       />
       <SectionList
         sections={DATA}
