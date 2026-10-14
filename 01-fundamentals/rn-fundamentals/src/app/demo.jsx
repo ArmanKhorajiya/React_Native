@@ -1,14 +1,11 @@
-import { useState } from "react";
 import {
   View,
   Text,
   Pressable,
   TouchableOpacity,
-  FlatList,
-  ScrollView,
   Button,
+  StyleSheet,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Demo() {
   const onCLick = () => {
@@ -16,21 +13,8 @@ export default function Demo() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        gap: 20,
-        marginTop: 50,
-      }}
-    >
-      <Text
-        style={{
-          color: "white",
-          fontSize: 30,
-        }}
-      >
-        Practice:
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.heading}>Practice:</Text>
 
       <Button
         title="Save"
@@ -39,55 +23,22 @@ export default function Demo() {
           alert("Saved");
         }}
         disabled={false}
+        color={"red"}
       />
 
-      <Pressable onPressIn={onCLick} style={{}}>
-        <Text
-          style={{
-            fontSize: 20,
-            color: "white",
-            textAlign: "center",
-            backgroundColor: "red",
-            borderRadius: 8,
-            alignItems: "center",
-            padding: 15,
-          }}
-        >
-          Pressable Button
-        </Text>
+      <Pressable onPressIn={onCLick} style={styles.pressableButton}>
+        <Text style={styles.buttonText}>Pressable Button</Text>
       </Pressable>
 
       <TouchableOpacity activeOpacity={0.5} onPress={() => alert("Clicked")}>
-        <Text
-          style={{
-            fontSize: 20,
-            color: "white",
-            backgroundColor: "red",
-            textAlign: "center",
-            padding: 15,
-          }}
-        >
-          Touchable Button
-        </Text>
+        <Text style={styles.touchableButton}>Touchable Button</Text>
       </TouchableOpacity>
 
       <Pressable
         android_ripple={{ color: "#90CAF9" }}
         onPress={() => alert("Clicked")}
-        style={{
-          backgroundColor: "#1565C0",
-          padding: 15,
-        }}
       >
-        <Text
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: 20,
-          }}
-        >
-          Android ripple effect
-        </Text>
+        <Text style={styles.buttonText}>Android ripple effect</Text>
       </Pressable>
 
       <Pressable
@@ -99,17 +50,7 @@ export default function Demo() {
         }}
         onPress={() => alert("Clicked")}
       >
-        <Text
-          style={{
-            backgroundColor: "red",
-            padding: 15,
-            textAlign: "center",
-            fontSize: 20,
-            color: "white",
-          }}
-        >
-          Drag and release
-        </Text>
+        <Text style={styles.dragButton}>Drag and release</Text>
       </Pressable>
 
       <Pressable
@@ -119,18 +60,58 @@ export default function Demo() {
         onLongPress={() => alert("Held")}
         delayLongPress={1000}
       >
-        <Text
-          style={{
-            fontSize: 20,
-            backgroundColor: "red",
-            textAlign: "center",
-            padding: 15,
-            color: "white",
-          }}
-        >
-          Hold Me
-        </Text>
+        <Text style={styles.holdButton}>Hold Me</Text>
       </Pressable>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    gap: 20,
+    marginTop: 50,
+  },
+
+  heading: {
+    color: "white",
+    fontSize: 30,
+  },
+
+  pressableButton: {
+    // Styles for the Pressable wrapper
+  },
+
+  buttonText: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center",
+    backgroundColor: "red",
+    borderRadius: 8,
+    padding: 15,
+  },
+
+  touchableButton: {
+    fontSize: 20,
+    color: "white",
+    backgroundColor: "red",
+    textAlign: "center",
+    padding: 15,
+  },
+
+  dragButton: {
+    backgroundColor: "red",
+    padding: 15,
+    textAlign: "center",
+    fontSize: 20,
+    color: "white",
+  },
+
+  holdButton: {
+    fontSize: 20,
+    backgroundColor: "red",
+    textAlign: "center",
+    padding: 15,
+    color: "white",
+  },
+});
