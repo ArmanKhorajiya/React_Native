@@ -38,8 +38,8 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="buttonPractice">
-        <NativeTabs.Trigger.Label>Buttons</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="demo">
+        <NativeTabs.Trigger.Label>Demo</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("@/assets/images/tabIcons/explore.png")}
           renderingMode="template"
