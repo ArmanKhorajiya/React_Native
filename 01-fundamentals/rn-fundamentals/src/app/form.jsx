@@ -1,11 +1,4 @@
-
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { useState } from "react";
 
 export default function Form() {
@@ -79,9 +72,7 @@ export default function Form() {
         <Text style={styles.btnText}>Submit</Text>
       </Pressable>
 
-      <Text style={styles.showDataHeading}>
-        Entered Details Are:
-      </Text>
+      <Text style={styles.showDataHeading}>Entered Details Are:</Text>
 
       <View style={styles.showDataContainer}>
         <Text style={styles.showData}>Name: {submittedName}</Text>
