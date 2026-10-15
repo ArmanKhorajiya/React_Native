@@ -9,28 +9,39 @@ import {
 import { useState } from "react";
 
 export default function Prac() {
-  const [n, setN] = useState("");
-  const [e, setE] = useState("");
-  const [m, setM] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    pass: "",
+  });
   const [data, setData] = useState([]);
   const handleSubmit = () => {
-    const obj = {
-      name: n,
-      email: e,
-      mobileNo: m,
-    };
-    setData([...data, obj]);
-    setN("");
-    setE("");
-    setM("");
+    setData([...data, input]);
+    setInput({
+      name: "",
+      email: "",
+      pass: "",
+    });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Form</Text>
-      <TextInput onChangeText={setN} value={n} placeholder="Name" />
-      <TextInput onChangeText={setE} value={e} placeholder="Email" />
-      <TextInput onChangeText={setM} value={m} placeholder="Mobile No" />
+      <TextInput
+        onChangeText={(ele) => setInput({ ...input, name: ele })}
+        value={input.name}
+        placeholder="Name"
+      />
+      <TextInput
+        onChangeText={(ele) => setInput({ ...input, email: ele })}
+        value={input.email}
+        placeholder="Email"
+      />
+      <TextInput
+        onChangeText={(ele) => setInput({ ...input, pass: ele })}
+        value={input.pass}
+        placeholder="Password"
+      />
 
       <Pressable onPress={handleSubmit}>
         <Text>Submit</Text>
@@ -38,12 +49,12 @@ export default function Prac() {
 
       <FlatList
         data={data}
-        keyExtractor={(item) => item.toString()}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View>
             <Text>{item.name}</Text>
             <Text>{item.email}</Text>
-            <Text>{item.mobileNo}</Text>
+            <Text>{item.pass}</Text>
           </View>
         )}
       />
