@@ -19,8 +19,10 @@ export default function Prac() {
       email: e,
       mobileNo: m,
     };
-
     setData([...data, obj]);
+    setN("");
+    setE("");
+    setM("");
   };
 
   return (
