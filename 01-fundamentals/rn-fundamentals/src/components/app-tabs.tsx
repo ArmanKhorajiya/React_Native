@@ -46,8 +46,8 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="todoList">
-        <NativeTabs.Trigger.Label>todoList</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="form">
+        <NativeTabs.Trigger.Label>Form</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("@/assets/images/tabIcons/explore.png")}
           renderingMode="template"
