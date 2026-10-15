@@ -22,7 +22,7 @@ export default function ToDo() {
       <TextInput
         placeholder="Enter data..."
         value={data}
-        onChange={setData}
+        onChangeText={setData}
         style={styles.textInput}
       />
 
@@ -30,7 +30,7 @@ export default function ToDo() {
         <Text style={styles.textPressable}>Show</Text>
       </Pressable>
 
-      <Text style={styles.textData}>{data}</Text>
+      <Text style={styles.textData}>{a}</Text>
     </View>
   );
 }
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
 
   textheading: {
-    textAlign: "center",
+    textAlign: "justify",
     color: "orange",
     fontSize: 50,
   },
