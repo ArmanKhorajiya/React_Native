@@ -7,135 +7,144 @@ import {
   StyleSheet,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Counter() {
   const [count, setCount] = useState(0);
 
-  const increment = () => {
-    setCount((prev) => prev + 1);
-  };
-
-  const reset = () => {
-    setCount(0);
-  };
-
   return (
-    <Pressable style={styles.container} onPress={increment}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <StatusBar
-        backgroundColor="#063D24"
         barStyle="light-content"
+        backgroundColor="#032B19"
       />
 
-      {/* Heading */}
+      {/* Full-screen counting area */}
+      <Pressable
+        style={StyleSheet.absoluteFill}
+        onPress={() => setCount((prev) => prev + 1)}
+      />
+
+      {/* Header */}
       <View style={styles.header} pointerEvents="none">
         <Text style={styles.heading}>Tasbih Counter</Text>
-        <Text style={styles.subtitle}>بِسْمِ اللَّهِ</Text>
+        <Text style={styles.decoration}>━━━━ ✦ ━━━━</Text>
       </View>
 
-      {/* Counter */}
+      {/* Main counter */}
       <View style={styles.counterArea} pointerEvents="none">
         <View style={styles.counterCircle}>
-          <Text style={styles.count}>{count}</Text>
+          <Text style={styles.count}>
+            {count}
+          </Text>
         </View>
 
-        <Text style={styles.hint}>TAP ANYWHERE TO COUNT</Text>
+        <Text style={styles.hint}>
+          TAP ANYWHERE TO COUNT
+        </Text>
       </View>
 
-      {/* Reset button */}
-      <Pressable
-        style={({ pressed }) => [
-          styles.resetButton,
-          pressed && styles.resetPressed,
-        ]}
-        onPress={(event) => {
-          event.stopPropagation();
-          reset();
-        }}
-      >
-        <Text style={styles.resetText}>↻  Reset Counter</Text>
-      </Pressable>
-    </Pressable>
+      {/* Reset stays separate from the counting area */}
+      <View style={styles.footer}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.resetButton,
+            pressed && styles.pressed,
+          ]}
+          onPress={() => setCount(0)}
+        >
+          <Text style={styles.resetText}>
+            ↻  Reset Counter
+          </Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#064E2B",
+    backgroundColor: "#032B19",
     paddingHorizontal: 24,
-    paddingTop: 55,
-    paddingBottom: 35,
+    paddingTop: 30,
+    paddingBottom: 20,
   },
 
   header: {
     alignItems: "center",
+    marginTop: 24,
   },
 
   heading: {
-    fontSize: 32,
-    fontWeight: "700",
     color: "#F4D58D",
-    letterSpacing: 0.5,
+    fontSize: 30,
+    fontWeight: "700",
+    textAlign: "center",
   },
 
-  subtitle: {
-    fontSize: 22,
-    color: "#D5B96A",
+  decoration: {
+    color: "#D4AF55",
+    fontSize: 17,
     marginTop: 12,
   },
 
   counterArea: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
   },
 
   counterCircle: {
     width: 230,
     height: 230,
     borderRadius: 115,
-    backgroundColor: "#0A6037",
-    borderWidth: 3,
-    borderColor: "#C9A85B",
+    borderWidth: 4,
+    borderColor: "#DDB85A",
+    backgroundColor: "#06452B",
     justifyContent: "center",
     alignItems: "center",
 
     elevation: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
+    shadowColor: "#DDB85A",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
   },
 
   count: {
+    color: "#FFFFFF",
     fontSize: 76,
     fontWeight: "600",
-    color: "#FFFFFF",
     fontVariant: ["tabular-nums"],
   },
 
   hint: {
+    color: "#D2DCCF",
     fontSize: 12,
     fontWeight: "600",
-    color: "#C5DCCB",
     letterSpacing: 3,
-    marginTop: 30,
+    marginTop: 34,
+  },
+
+  footer: {
+    alignItems: "center",
+    paddingTop: 12,
+    paddingBottom: 20,
   },
 
   resetButton: {
-    alignSelf: "center",
-    backgroundColor: "#123D2A",
-    borderWidth: 1,
-    borderColor: "#C9A85B",
+    minWidth: 190,
+    alignItems: "center",
+    borderWidth: 1.5,
+    borderColor: "#DDB85A",
+    borderRadius: 32,
     paddingVertical: 14,
-    paddingHorizontal: 30,
-    borderRadius: 30,
-    marginBottom: 20,
+    paddingHorizontal: 24,
   },
 
-  resetPressed: {
-    opacity: 0.65,
-    transform: [{ scale: 0.96 }],
+  pressed: {
+    opacity: 0.6,
   },
 
   resetText: {
