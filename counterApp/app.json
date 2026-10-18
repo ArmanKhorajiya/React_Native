@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Tasbih Counter",
@@ -30,7 +29,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#064E2B",
+          "backgroundColor": "#003B29",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain"
