@@ -22,15 +22,7 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="flatlist">
-        <NativeTabs.Trigger.Label>Flatlist</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/tabIcons/explore.png")}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-
-      <NativeTabs.Trigger name="components_practice">
+      <NativeTabs.Trigger name="button_practice">
         <NativeTabs.Trigger.Label>Components</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("@/assets/images/tabIcons/explore.png")}
@@ -40,14 +32,6 @@ export default function AppTabs() {
 
       <NativeTabs.Trigger name="form">
         <NativeTabs.Trigger.Label>Form</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/tabIcons/explore.png")}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-
-      <NativeTabs.Trigger name="counter">
-        <NativeTabs.Trigger.Label>Counter</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("@/assets/images/tabIcons/explore.png")}
           renderingMode="template"
