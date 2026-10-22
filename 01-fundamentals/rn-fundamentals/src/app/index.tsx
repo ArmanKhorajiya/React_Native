@@ -87,7 +87,7 @@ export default function Index() {
             ]}
           >
             <ImageBackground
-              source={require("../../assets/images/counter-bg.png")}
+              source={require("../../assets/images/tabIcons/explore.png")}
               style={styles.image}
               resizeMode="cover"
             />
